@@ -7,18 +7,19 @@
     <User></User>
   </transition>
   <transition name="opacity">
-    <PopupAd v-if="showPopup" :ad="ad" @close="showPopup = false"></PopupAd>
+    <!-- uklanjamo AD -->
+    <!-- <PopupAd v-if="showPopup" :ad="ad" @close="showPopup = false"></PopupAd> -->
   </transition>
 </template>
 
 <script lang="ts">
 import Main from "@/components/Main.vue";
 import Navbar from "@/components/Navbar.vue";
-import PopupAd from "@/components/PopupAd.vue";
+// import PopupAd from "@/components/PopupAd.vue";
 import User from "@/components/User.vue";
 import { ActionTypes } from "@/store/actions";
 import { defineComponent } from "vue";
-import getAds from "./scripts/ads";
+// import getAds from "./scripts/ads";
 import { Ad } from "./store/state";
 
 export default defineComponent({
@@ -27,7 +28,6 @@ export default defineComponent({
     Navbar,
     Main,
     User,
-    PopupAd,
   },
   data() {
     return {
@@ -48,7 +48,7 @@ export default defineComponent({
       this.toggleTransitions(this.$store.state.settings.transitions);
       this.isAppInitiated = window.isAppInitiated = true;
       document.body.style.opacity = "1";
-      getAds(); // todo!
+      // getAds(); // todo!
     });
     this.$emitter.on("show-popup", (ad: Ad) => {
       this.ad = ad;

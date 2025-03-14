@@ -5,12 +5,7 @@
         <img :src="ad.images.banner" class="banner" :key="adIdx" ref="banner" />
       </transition>
       <transition :name="navCollapsed ? 'left' : 'right'">
-        <img
-          v-if="navCollapsed"
-          class="ad-logo abs-cover"
-          :src="ad.images.logo"
-          alt="Oglas"
-        />
+        <img v-if="navCollapsed" class="ad-logo abs-cover" :src="ad.images.logo" alt="Oglas" />
       </transition>
     </a>
     <template v-if="ads.length > 1">
@@ -107,28 +102,37 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 #carousel {
+  /* zasada sakrivamo ad u navbaru */
+  display: none !important;
+
   position: relative;
+
   &:hover .control {
     opacity: 0.4;
   }
 }
+
 .ad-banner {
   position: relative;
   padding: 0 !important;
   width: 285px !important;
   height: 150px !important;
+
   img {
     height: 100%;
     transition: 1s;
   }
 }
+
 .ad-logo {
   transition: 500ms !important;
   z-index: 1;
 }
+
 .nav-collapsed .ad-banner {
   width: 100% !important;
 }
+
 .control {
   display: flex;
   position: absolute;
@@ -140,20 +144,25 @@ export default defineComponent({
   align-items: center;
   opacity: 0;
   transition: opacity 150ms;
+
   &:hover {
     cursor: pointer;
     opacity: 0.6 !important;
   }
+
   .material-icons {
     color: white;
   }
 }
+
 .left {
   left: 0;
+
   span {
     transform: translateX(3px);
   }
 }
+
 .right {
   right: 0;
 }
@@ -162,10 +171,12 @@ export default defineComponent({
 .right-enter-active {
   position: absolute;
 }
+
 .left-enter-from,
 .right-leave-to {
   transform: translateX(-100%);
 }
+
 .left-leave-to,
 .right-enter-from {
   transform: translateX(100%);
