@@ -1,20 +1,21 @@
 <template>
-  <router-link
-    v-for="(row, i) in list"
-    :key="i"
-    :to="rootLink + convertToPath(row.name)"
-    :class="{
-      'router-link-active':
-        $route.path.includes('razred') && row.name == 'Razred',
-      blinking: row.blinking && blinking,
-    }"
-    @click="rowClicked"
-    v-tooltip.right="navCollapsed ? row.name : ''"
-    v-wave
-  >
-    <span class="material-icons"> {{ row.icon }} </span>
-    <div class="text" :style="'--order: ' + (i + order)">{{ row.name }}</div>
-  </router-link>
+<router-link
+  v-for="(row, i) in list"
+  :key="i"
+  :to="rootLink + convertToPath(row.name)"
+  :class="{
+    'router-link-active': $route.path.includes('razred') && row.name == 'Razred',
+    blinking: row.blinking && blinking,
+    'ai-button': row.name === 'AI pretraga', // Samo AI pretraga dobiva posebnu klasu
+  }"
+  @click="rowClicked"
+  v-tooltip.right="navCollapsed ? row.name : ''"
+  v-wave
+>
+  <span class="material-icons"> {{ row.icon }} </span>
+  <div class="text" :style="'--order: ' + (i + order)">{{ row.name }}</div>
+  <span v-if="row.name === 'AI pretraga'" class="material-icons arrow-icon"> arrow_forward </span>
+</router-link>
 </template>
 
 <script lang="ts">
@@ -72,10 +73,12 @@ export default defineComponent({
 }
 
 @keyframes blink {
+
   from,
   to {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
   }
@@ -88,5 +91,39 @@ export default defineComponent({
   .material-icons {
     text-shadow: 0 0 15px;
   }
+}
+
+/* custom styles for AI pretraga btn */
+.ai-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Razmak između ikone i teksta */
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Suptilni obrub */
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  margin: 15px auto; /* Centriranje i bolji razmak */
+  width: 90%;
+}
+
+.ai-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 0px 15px rgba(0, 212, 255, 0.5);
+  transform: scale(1.05);
+}
+
+.arrow-icon {
+  font-size: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.ai-button:hover .arrow-icon {
+  transform: translateX(5px); /* Lagana animacija strelice */
 }
 </style>

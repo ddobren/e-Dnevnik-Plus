@@ -101,6 +101,10 @@ export default defineComponent({
       mounted: false,
       linksTop: [
         {
+          name: "AI pretraga",
+          icon: "smart_toy",
+        },
+        {
           name: "Razred",
           icon: "school",
         },
