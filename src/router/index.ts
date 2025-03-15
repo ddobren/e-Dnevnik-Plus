@@ -11,6 +11,7 @@ import GlobalStats from "@/views/GlobalStats.vue";
 import Login from "@/views/Login.vue";
 import Settings from "@/views/settings/Settings.vue";
 import Websites from "@/views/Websites.vue";
+import AIFind from "@/views/aiFind/AIFind.vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
 /*
@@ -101,6 +102,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/o-aplikaciji",
     component: About,
+  },
+  {
+    path: "/ai-pretraga",
+    component: AIFind,
   },
   {
     path: "/:pathMatch(.*)",

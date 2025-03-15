@@ -2,11 +2,11 @@
 <router-link
   v-for="(row, i) in list"
   :key="i"
-  :to="rootLink + convertToPath(row.name)"
+  :to="row.name === 'AI pretraga' ? '/ai-pretraga' : rootLink + convertToPath(row.name)"
   :class="{
     'router-link-active': $route.path.includes('razred') && row.name == 'Razred',
     blinking: row.blinking && blinking,
-    'ai-button': row.name === 'AI pretraga', // Samo AI pretraga dobiva posebnu klasu
+    'ai-button': row.name === 'AI pretraga',
   }"
   @click="rowClicked"
   v-tooltip.right="navCollapsed ? row.name : ''"
@@ -98,16 +98,16 @@ export default defineComponent({
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px; /* Razmak između ikone i teksta */
+  gap: 10px;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3); /* Suptilni obrub */
+  border: 2px solid rgba(255, 255, 255, 0.3);
   color: white;
   font-weight: bold;
   padding: 12px 20px;
   border-radius: 12px;
   transition: all 0.3s ease-in-out;
   position: relative;
-  margin: 15px auto; /* Centriranje i bolji razmak */
+  margin: 15px auto;
   width: 90%;
 }
 
@@ -124,6 +124,6 @@ export default defineComponent({
 }
 
 .ai-button:hover .arrow-icon {
-  transform: translateX(5px); /* Lagana animacija strelice */
+  transform: translateX(5px);
 }
 </style>
