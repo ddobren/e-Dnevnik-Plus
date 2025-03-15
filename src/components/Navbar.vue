@@ -37,9 +37,6 @@
           :order="2"
           :navCollapsed="navCollapsed"
         ></NavbarList>
-        <!-- <span id="more-horiz" class="material-icons flex-center">
-          more_horiz
-        </span> -->
         <NavbarList
           :list="websites"
           rootLink="/stranica/"
@@ -187,18 +184,6 @@ export default defineComponent({
             .map(({ name }) => ({ name, icon: icons[name] || "web" }))
         : [];
     },
-    // TODO: removed due to ads
-    /* navCollapsed: {
-      get(): boolean {
-        return this.$store.state.settings.navbarCollapsed;
-      },
-      set(value: boolean) {
-        this.$store.commit(MutationTypes.UPDATE_GLOBAL_SETTING, {
-          name: "navbarCollapsed",
-          value,
-        });
-      },
-    }, */
   },
 });
 </script>
@@ -273,10 +258,6 @@ $nav-shadow-bottom: 0 -1px 0 #ffffff1a inset;
   color: $navbar-text-color;
   transition: background-color 150ms, color 150ms, opacity 150ms;
 
-  .material-icons {
-    padding-right: 15px;
-  }
-
   &:hover {
     cursor: pointer;
     background-color: #ffffff14;
@@ -285,16 +266,6 @@ $nav-shadow-bottom: 0 -1px 0 #ffffff1a inset;
 
 #nav-top {
   height: 104px !important;
-}
-
-#more-horiz {
-  width: 100%;
-  height: 25px;
-  box-shadow: $nav-shadow-bottom;
-
-  @include themed() {
-    color: t("gray-blue");
-  }
 }
 
 :deep(.text) {
